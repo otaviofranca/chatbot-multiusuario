@@ -1,0 +1,14 @@
+[Unit]
+Description=Chatbot Multiusuario (FastAPI)
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/chatbot-multiusuario
+EnvironmentFile=/home/ubuntu/chatbot-multiusuario/.env
+ExecStart=/home/ubuntu/chatbot-multiusuario/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 80
+Restart=always
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
